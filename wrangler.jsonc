@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "crm-saude-pro",
+  "compatibility_date": "2026-03-11",
+  "pages_build_output_dir": "./dist",
+  "compatibility_flags": ["nodejs_compat"],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "crm-saude-pro-production",
+      "database_id": "placeholder-will-be-replaced-on-deploy"
+    }
+  ]
+}
