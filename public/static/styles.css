@@ -490,7 +490,7 @@ body {
 .stat-change.down { color: #ef4444; }
 
 /* ========== PIPELINE / KANBAN ========== */
-.pipeline-container { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 16px; min-height: 500px; }
+.pipeline-container { display: flex; gap: 16px; overflow-x: auto; white-space: nowrap; padding-bottom: 16px; min-height: 500px; }
 .pipeline-col {
   min-width: 240px;
   max-width: 280px;
@@ -1011,14 +1011,60 @@ textarea.form-control { resize: vertical; min-height: 80px; }
 .progress-bar.green { background: linear-gradient(to right, #10b981, #34d399); }
 .progress-bar.orange { background: linear-gradient(to right, #f59e0b, #fbbf24); }
 
-/* ========== RESPONSIVE ========== */
+/* Responsividade geral */
 @media (max-width: 768px) {
-  #sidebar { transform: translateX(-100%); }
-  #sidebar.mobile-open { transform: translateX(0); }
-  #main-content { margin-left: 0 !important; }
-  .pipeline-container { flex-wrap: wrap; }
-  .pipeline-col { min-width: 200px; }
+  /* Sidebar recolhida no mobile */
+  #sidebar {
+    transform: translateX(-100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background: #fff;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+  }
+
+  #sidebar.mobile-open {
+    transform: translateX(0);
+  }
+
+  /* Conteúdo principal ocupa toda a largura */
+  #main-content {
+    margin-left: 0 !important;
+    padding: 1rem;
+  }
+
+  /* Pipeline ajustado para scroll horizontal */
+  .pipeline-container {
+    display: flex;
+    flex-wrap: nowrap;       /* não quebra colunas */
+    overflow-x: auto;        /* ativa scroll lateral */
+    -webkit-overflow-scrolling: touch; /* scroll suave no iOS */
+    gap: 1rem;
+  }
+
+  .pipeline-col {
+    min-width: 250px;        /* largura mínima para cada coluna */
+    flex: 0 0 auto;          /* impede encolhimento */
+  }
+
+  /* Ajustes em tabelas e listas */
+  table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+  }
+
+  /* Botões e inputs ocupam largura total */
+  button, input, select {
+    width: 100%;
+    max-width: 100%;
+  }
 }
+
 
 /* ========== GRID UTILS ========== */
 .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }

@@ -747,3 +747,24 @@ function renderPipelineChart(stats) {
   });
 }
 
+<body>
+  <!-- seu conteúdo -->
+  <button id="menu-toggle">☰</button>
+  <div id="sidebar"> ... </div>
+
+  <script>
+    const sidebar = document.getElementById("sidebar");
+    const toggleBtn = document.getElementById("menu-toggle");
+
+    toggleBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("mobile-open");
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+        sidebar.classList.remove("mobile-open");
+      }
+    });
+  </script>
+</body>
+
